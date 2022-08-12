@@ -64,10 +64,12 @@ class DummyLinkedList:
     def delete(self, val, all=False):
         node = self.__head.next
         while node is not self.__tail:
-            if node.value == val:
-                self.__length -= 1
-                node.prev.next = node.next
-                node.next.prev = node.prev
+            if node.value != val:
+                node = node.next
+                continue
+            self.__length -= 1
+            node.prev.next = node.next
+            node.next.prev = node.prev
             if not all:
                 return
             node = node.next
