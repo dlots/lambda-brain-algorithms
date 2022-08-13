@@ -54,8 +54,8 @@ class DynArray:
         if i < 0 or i >= self.count:
             raise IndexError('Index is out of bounds')
         new_count = self.count - 1
-        new_capacity = int(self.capacity / self.resize_down_rate)
-        if new_capacity >= self.minimal_capacity and new_count / self.capacity < self.resize_down_threshold:
+        new_capacity = max(int(self.capacity / self.resize_down_rate), self.minimal_capacity)
+        if new_capacity != self.capacity and new_count / self.capacity < self.resize_down_threshold:
             self.resize(new_capacity)
         self.count -= 1
         for x in range(i, self.count):

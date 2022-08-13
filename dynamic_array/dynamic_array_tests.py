@@ -70,6 +70,28 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(IndexError):
             array.delete(1)
 
+    def test_deletion_minimal_capacity(self):
+        array = DynArray()
+        for i in range(17):
+            array.append(i)
+        self.assertEqual(array.count, 17)
+        self.assertEqual(array.capacity, 32)
+        array.delete(0)
+        self.assertEqual(array.count, 16)
+        self.assertEqual(array.capacity, 32)
+        array.delete(0)
+        self.assertEqual(array.count, 15)
+        self.assertEqual(array.capacity, 21)
+        self.assertEqual(array[0], 2)
+        for i in range(4):
+            array.delete(0)
+            self.assertEqual(array.count, 14 - i)
+            self.assertEqual(array.capacity, 21)
+        for i in range(11):
+            array.delete(0)
+            self.assertEqual(array.count, 10 - i)
+            self.assertEqual(array.capacity, 16)
+
 
 if __name__ == '__main__':
     unittest.main()
