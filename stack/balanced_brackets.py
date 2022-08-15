@@ -7,9 +7,7 @@ def brackets_are_balanced(brackets_string):
         if ch == '(':
             stack.push(ch)
             continue
-        top = stack.pop()
-        if top is None:
+        if stack.size() == 0:
             return False
-    if stack.size() > 0:
-        return False
-    return True
+        stack.pop()
+    return stack.size() == 0
