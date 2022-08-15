@@ -47,18 +47,19 @@ class LinkedList:
         parent = None
         node = self.head
         while node is not None:
-            if node.value == val:
-                self.length -= 1
-                if node is self.tail:
-                    self.tail = parent
-                if node is self.head:
-                    self.head = node.next
-                elif parent is not None:
-                    parent.next = node.next
-                if not all:
-                    return
-            else:
+            if node.value != val:
                 parent = node
+                node = node.next
+                continue
+            self.length -= 1
+            if node is self.tail:
+                self.tail = parent
+            if node is self.head:
+                self.head = node.next
+            elif parent is not None:
+                parent.next = node.next
+            if not all:
+                return
             node = node.next
 
     def clean(self):

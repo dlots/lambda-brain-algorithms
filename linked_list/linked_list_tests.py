@@ -1,5 +1,5 @@
 import unittest
-from linked_list.linked_list import LinkedList, Node
+from linked_list import LinkedList, Node
 
 
 def create_linked_list_from_values(*values):
