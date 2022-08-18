@@ -111,5 +111,4 @@ class OrderedStringList(OrderedList):
         super(OrderedStringList, self).__init__(asc)
 
     def compare(self, v1, v2):
-        super(OrderedStringList, self).compare(v1.strip(), v2.strip())
-        return 0
+        return super(OrderedStringList, self).compare(v1.strip(), v2.strip())
