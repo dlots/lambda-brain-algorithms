@@ -9,10 +9,8 @@ class HashTable:
 
     def seek_slot(self, value):
         index = self.hash_fun(value)
-        # print('hash of', value, 'is', index)
         initial_index = index
         while index < self.size and self.slots[index] is not None:
-            # print('collision!', value)
             index += self.step
         if index < self.size and self.slots[index] is None:
             return index
@@ -22,7 +20,6 @@ class HashTable:
             index += self.step
         if index < initial_index and self.slots[index] is None:
             return index
-        # print('couldnt find slot')
         return None
 
     def put(self, value):
