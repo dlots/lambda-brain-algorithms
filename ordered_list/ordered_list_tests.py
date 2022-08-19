@@ -74,10 +74,3 @@ class TestOrderedList(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    # o_list = OrderedList(False)
-    # nums = [23, 532, 13, 36, 12, 4, 16, 13, 1, 24, 5612, 412, 5]
-    # for num in nums:
-    #     o_list.add(num)
-    # for num in nums:
-    #     o_list.delete(num)
-    #     print([node.value for node in o_list.get_all()])
