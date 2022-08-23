@@ -9,7 +9,7 @@ class TestSet(unittest.TestCase):
         for i in range(1, 1001):
             p_set.put(i)
             self.assertEqual(p_set.size(), i)
-            self.assertTrue(i in p_set.slots)
+            self.assertTrue(i in p_set.storage)
 
     def test_put_existing(self):
         p_set = PowerSet()
@@ -20,7 +20,7 @@ class TestSet(unittest.TestCase):
         for i in range(1, 1001):
             p_set.put(i)
             self.assertEqual(p_set.size(), 1000)
-            self.assertEqual(len([value for value in p_set.slots if value == i]), 1)
+            self.assertEqual(len([value for value in p_set.storage if value == i]), 1)
 
     def test_remove_existing(self):
         p_set = PowerSet()
@@ -144,7 +144,7 @@ class TestSet(unittest.TestCase):
         p_set2 = PowerSet()
         for i in range(1, 20001):
             p_set1.put(i)
-        for i in range(1, 501):
+        for i in range(1, 20001):
             p_set2.put(i)
         start = time()
         p_set1.put(20001)
