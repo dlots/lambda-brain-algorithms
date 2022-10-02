@@ -15,14 +15,19 @@ class TestSimpleTree(unittest.TestCase):
 
     def testDeleteNode(self):
         tree = make_tree()
-        new_node = SimpleTreeNode(1, tree.Root)
-        tree.AddChild(tree.Root, new_node)
-        tree.AddChild(new_node, SimpleTreeNode(2, new_node))
-        self.assertEqual(len(tree.FindNodesByValue(1)), 1)
-        self.assertEqual(len(tree.FindNodesByValue(2)), 1)
-        tree.DeleteNode(new_node)
-        self.assertEqual(len(tree.FindNodesByValue(1)), 0)
-        self.assertEqual(len(tree.FindNodesByValue(2)), 0)
+        for _ in range(50):
+            tree.AddChild(tree.Root, SimpleTreeNode(1, tree.Root))
+        for node in tree.GetAllNodes():
+            tree.AddChild(node, SimpleTreeNode(2, node))
+        self.assertEqual(tree.Count(), 102)
+        tree.DeleteNode(tree.Root.Children[0])
+        self.assertEqual(tree.Count(), 100)
+        new_root = SimpleTreeNode(-1, None)
+        old_root = tree.Root
+        tree.Root = new_root
+        tree.AddChild(tree.Root, old_root)
+        tree.DeleteNode(tree.Root.Children[0])
+        self.assertEqual(tree.Count(), 1)
 
     def testGetAllNodes(self):
         tree = make_tree()

@@ -14,10 +14,12 @@ class SimpleTree:
 
     def AddChild(self, ParentNode, NewChild):
         ParentNode.Children.append(NewChild)
+        NewChild.Parent = ParentNode
 
     def DeleteNode(self, NodeToDelete):
         if NodeToDelete.Parent is not None:
             NodeToDelete.Parent.Children.remove(NodeToDelete)
+            NodeToDelete.Parent = None
 
     def get_all_nodes_in_subtree(self, subtree_root, nodes):
         nodes.append(subtree_root)
