@@ -23,7 +23,7 @@ class BST:
 
     def __init__(self, node):
         self.Root = node  # корень дерева, или None
-        self.size = 0
+        self.size = 0 if node is None else 1
 
     def find_node_by_key_recursively(self, subtree_root, key):
         if key == subtree_root.NodeKey:

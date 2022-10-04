@@ -1,6 +1,6 @@
 import unittest
 from random import shuffle
-from binary_search_tree import BST
+from binary_search_tree import BST, BSTNode
 
 
 def value_from_key(key):
@@ -163,6 +163,12 @@ class TestBinarySearchTree(unittest.TestCase):
         self.assertIsNotNone(result.Node)
         self.assertFalse(result.NodeHasKey)
         self.assertEqual(count_nodes_in_tree(tree), len(keys) - 1)
+
+    def test_empty_and_single_node_count(self):
+        tree = BST(None)
+        self.assertEqual(tree.Count(), 0)
+        tree = BST(BSTNode(0, 0, None))
+        self.assertEqual(tree.Count(), 1)
 
     def test_fully_delete_tree_and_check_count_in_process(self):
         tree = BST(None)
