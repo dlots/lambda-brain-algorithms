@@ -72,14 +72,11 @@ class BST:
             return self.find_min_max_recursively(from_node.RightChild, find_max)
         elif not find_max and from_node.LeftChild is not None:
             return self.find_min_max_recursively(from_node.LeftChild, find_max)
-        result = BSTFind()
-        result.Node = from_node
-        result.NodeHasKey = True
-        return result
+        return from_node
 
     def FinMinMax(self, FromNode, FindMax):
         if FromNode is None:
-            return BSTFind()
+            return None
         return self.find_min_max_recursively(FromNode, FindMax)
 
     def resolve_successor(self, successor, node_to_delete):
@@ -119,8 +116,7 @@ class BST:
         elif node_to_delete.LeftChild is None and node_to_delete.RightChild is None:
             self.insert_at_parent(node_to_delete.Parent, None, to_left)
         else:
-            successor_result = self.FinMinMax(node_to_delete.RightChild, False)
-            successor = successor_result.Node
+            successor = self.FinMinMax(node_to_delete.RightChild, False)
             self.resolve_successor(successor, node_to_delete)
             self.insert_at_parent(node_to_delete.Parent, successor, to_left)
         self.size -= 1
