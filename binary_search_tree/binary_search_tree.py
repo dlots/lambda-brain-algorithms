@@ -124,3 +124,34 @@ class BST:
 
     def Count(self):
         return self.size  # количество узлов в дереве
+
+    def WideAllNodes(self):
+        result = []
+        queue = []
+        if self.Root is not None:
+            queue.append(self.Root)
+        while len(queue) > 0:
+            current_node = queue.pop()
+            result.append(current_node)
+            if current_node.LeftChild is not None:
+                queue.insert(0, current_node.LeftChild)
+            if current_node.RightChild is not None:
+                queue.insert(0, current_node.RightChild)
+        return tuple(result)
+
+    def recursive_deep_all_nodes(self, subtree_root, order, result):
+        if subtree_root is None:
+            return
+        if order == 2:
+            result.append(subtree_root)
+        self.recursive_deep_all_nodes(subtree_root.LeftChild, order, result)
+        if order == 0:
+            result.append(subtree_root)
+        self.recursive_deep_all_nodes(subtree_root.RightChild, order, result)
+        if order == 1:
+            result.append(subtree_root)
+
+    def DeepAllNodes(self, order):
+        result = []
+        self.recursive_deep_all_nodes(self.Root, order, result)
+        return tuple(result)

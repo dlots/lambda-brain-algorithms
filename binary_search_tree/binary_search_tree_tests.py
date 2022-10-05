@@ -17,6 +17,14 @@ def count_nodes_in_tree(tree):
     return count_nodes_recursively(tree.Root)
 
 
+def create_sample_tree():
+    tree = BST(None)
+    keys = [10, 5, 15, 3, 7, 12, 16, 9, 8, 6, 17, 11]
+    for key in keys:
+        tree.AddKeyValue(key, value_from_key(key))
+    return tree
+
+
 class TestBinarySearchTree(unittest.TestCase):
     def test_find_node_by_key(self):
         tree = BST(None)
@@ -190,6 +198,50 @@ class TestBinarySearchTree(unittest.TestCase):
             self.assertEqual(tree.Count(), count_nodes_in_tree(tree))
             self.assertEqual(count_nodes_in_tree(tree), len(keys) - (i + 1))
             self.assertEqual(tree.Count(), len(keys) - (i + 1))
+
+    def test_wide_all_nodes(self):
+        tree = create_sample_tree()
+        result_order = [10, 5, 15, 3, 7, 12, 16, 6, 9, 11, 17, 8]
+        result = tree.WideAllNodes()
+        for node, expected_key in zip(result, result_order):
+            self.assertEqual(node.NodeKey, expected_key)
+
+    def test_deep_all_nodes_in_order(self):
+        tree = create_sample_tree()
+        result_order = [3, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17]
+        result = tree.DeepAllNodes(0)
+        for node, expected_key in zip(result, result_order):
+            self.assertEqual(node.NodeKey, expected_key)
+
+    def test_deep_all_nodes_post_order(self):
+        tree = create_sample_tree()
+        result_order = [3, 6, 8, 9, 7, 5, 11, 12, 17, 16, 15, 10]
+        result = tree.DeepAllNodes(1)
+        for node, expected_key in zip(result, result_order):
+            self.assertEqual(node.NodeKey, expected_key)
+
+    def test_deep_all_nodes_pre_order(self):
+        tree = create_sample_tree()
+        result_order = [10, 5, 3, 7, 6, 9, 8, 15, 12, 11, 16, 17]
+        result = tree.DeepAllNodes(2)
+        for node, expected_key in zip(result, result_order):
+            self.assertEqual(node.NodeKey, expected_key)
+
+    def test_wide_all_nodes_empty(self):
+        tree = BST(None)
+        self.assertEqual(tree.WideAllNodes(), tuple())
+
+    def test_deep_all_nodes_in_order_empty(self):
+        tree = BST(None)
+        self.assertEqual(tree.DeepAllNodes(0), tuple())
+
+    def test_deep_all_nodes_post_order_empty(self):
+        tree = BST(None)
+        self.assertEqual(tree.DeepAllNodes(1), tuple())
+
+    def test_deep_all_nodes_pre_order_empty(self):
+        tree = BST(None)
+        self.assertEqual(tree.DeepAllNodes(2), tuple())
 
 
 if __name__ == '__main__':
