@@ -1,6 +1,6 @@
 def calculate_tree_size(depth):
     size = 0
-    for x in range(depth):
+    for x in range(depth + 1):
         size += 2 ** x
     return size
 

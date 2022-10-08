@@ -5,11 +5,11 @@ from array_binary_search_tree import aBST, calculate_tree_size
 
 class TestArrayBinarySearchTree(unittest.TestCase):
     def test_calculate_tree_size(self):
-        self.assertEqual(calculate_tree_size(1), 1)
-        self.assertEqual(calculate_tree_size(2), 3)
-        self.assertEqual(calculate_tree_size(3), 7)
-        self.assertEqual(calculate_tree_size(4), 15)
-        self.assertEqual(calculate_tree_size(5), 31)
+        self.assertEqual(calculate_tree_size(0), 1)
+        self.assertEqual(calculate_tree_size(1), 3)
+        self.assertEqual(calculate_tree_size(2), 7)
+        self.assertEqual(calculate_tree_size(3), 15)
+        self.assertEqual(calculate_tree_size(4), 31)
 
     def test_find_in_empty_tree(self):
         tree = aBST(5)
@@ -19,7 +19,7 @@ class TestArrayBinarySearchTree(unittest.TestCase):
             self.assertIsNone(tree.Tree[index])
 
     def test_make_full_tree(self):
-        depth = 3
+        depth = 2
         tree = aBST(depth)
         keys = [10, 5, 15, 2, 6, 12, 17]
         for key in keys:
@@ -31,7 +31,7 @@ class TestArrayBinarySearchTree(unittest.TestCase):
             self.assertGreaterEqual(tree.FindKeyIndex(key), 0)
 
     def test_cant_exceed_depth_tree_is_not_full(self):
-        depth = 3
+        depth = 2
         tree = aBST(depth)
         keys = [10, 5, 2, 6]
         for key in keys:
