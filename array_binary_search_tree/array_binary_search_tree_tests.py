@@ -36,8 +36,8 @@ class TestArrayBinarySearchTree(unittest.TestCase):
         keys = [10, 5, 2, 6]
         for key in keys:
             tree.AddKey(key)
-        self.assertIsNone(tree.AddKey(1))
-        self.assertIsNone(tree.AddKey(7))
+        self.assertEqual(tree.AddKey(1), -1)
+        self.assertEqual(tree.AddKey(7), -1)
 
 
 if __name__ == '__main__':
