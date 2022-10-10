@@ -1,4 +1,4 @@
-def calculate_tree_size(depth):
+def get_tree_size_from_depth(depth):
     size = 0
     for x in range(depth + 1):
         size += 2 ** x
@@ -20,7 +20,7 @@ def get_right_child_index(current_index):
 class aBST:
 
     def __init__(self, depth):
-        tree_size = calculate_tree_size(depth)
+        tree_size = get_tree_size_from_depth(depth)
         self.Tree = [None] * tree_size
 
     def find_key_index_recursively(self, key, current_index):

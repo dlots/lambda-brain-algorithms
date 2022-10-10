@@ -1,15 +1,15 @@
 import unittest
 from random import shuffle
-from array_binary_search_tree import aBST, calculate_tree_size
+from array_binary_search_tree import aBST, get_tree_size_from_depth
 
 
 class TestArrayBinarySearchTree(unittest.TestCase):
     def test_calculate_tree_size(self):
-        self.assertEqual(calculate_tree_size(0), 1)
-        self.assertEqual(calculate_tree_size(1), 3)
-        self.assertEqual(calculate_tree_size(2), 7)
-        self.assertEqual(calculate_tree_size(3), 15)
-        self.assertEqual(calculate_tree_size(4), 31)
+        self.assertEqual(get_tree_size_from_depth(0), 1)
+        self.assertEqual(get_tree_size_from_depth(1), 3)
+        self.assertEqual(get_tree_size_from_depth(2), 7)
+        self.assertEqual(get_tree_size_from_depth(3), 15)
+        self.assertEqual(get_tree_size_from_depth(4), 31)
 
     def test_find_in_empty_tree(self):
         tree = aBST(5)
