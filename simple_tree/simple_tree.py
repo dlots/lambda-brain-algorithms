@@ -84,3 +84,19 @@ class SimpleTree:
     def set_all_nodes_level(self):
         if self.Root is not None:
             self.set_level_in_subtree(self.Root, 0)
+
+    def __even_trees_recursive(self, current_node, result):
+        count = 1
+        for child in current_node.Children:
+            count += self.__even_trees_recursive(child, result)
+        if count % 2 == 0 and current_node.Parent is not None:
+            result.append(current_node.Parent)
+            result.append(current_node)
+            count = 0
+        return count
+
+    def EvenTrees(self):
+        result = []
+        if self.Root is not None:
+            self.__even_trees_recursive(self.Root, result)
+        return result

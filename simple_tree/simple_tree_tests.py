@@ -79,6 +79,30 @@ class TestSimpleTree(unittest.TestCase):
             tree.AddChild(node, SimpleTreeNode(2, node))
         self.assertEqual(tree.LeafCount(), 51)
 
+    def testEvenTrees(self):
+        one = SimpleTreeNode(1, None)
+        tree = SimpleTree(one)
+        two = SimpleTreeNode(2, None)
+        three = SimpleTreeNode(3, None)
+        six = SimpleTreeNode(6, None)
+        tree.AddChild(one, two)
+        tree.AddChild(one, three)
+        tree.AddChild(one, six)
+        five = SimpleTreeNode(5, None)
+        seven = SimpleTreeNode(7, None)
+        tree.AddChild(two, five)
+        tree.AddChild(two, seven)
+        four = SimpleTreeNode(4, None)
+        tree.AddChild(three, four)
+        eight = SimpleTreeNode(8, None)
+        tree.AddChild(six, eight)
+        nine = SimpleTreeNode(9, None)
+        ten = SimpleTreeNode(10, None)
+        tree.AddChild(eight, nine)
+        tree.AddChild(eight, ten)
+        result = tree.EvenTrees()
+        self.assertTrue(result == [one, three, one, six] or result == [one, six, one, three])
+
 
 if __name__ == '__main__':
     unittest.main()
