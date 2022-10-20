@@ -50,7 +50,7 @@ class SimpleGraph:
             for index, is_adjacent in enumerate(self.m_adjacency[current_index]):
                 if is_adjacent and index == VTo:
                     stack.append(VTo)
-                    return stack
+                    return [self.vertex[i] for i in stack]
             found_non_hit = False
             for index, is_adjacent in enumerate(self.m_adjacency[current_index]):
                 if is_adjacent and not self.vertex[index].Hit:
