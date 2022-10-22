@@ -92,6 +92,28 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(path[1].Value, 1)
         self.assertEqual(path[2].Value, 3)
 
+    def test_breadth_first_search(self):
+        graph = SimpleGraph(5)
+        graph.AddVertex(0)
+        graph.AddVertex(1)
+        graph.AddEdge(0, 1)
+        path = graph.BreadthFirstSearch(0, 1)
+        self.assertEqual(path[0].Value, 0)
+        self.assertEqual(path[1].Value, 1)
+        graph.AddVertex(2)
+        graph.AddEdge(1, 2)
+        graph.AddVertex(3)
+        graph.AddEdge(1, 3)
+        graph.AddEdge(3, 2)
+        path = graph.BreadthFirstSearch(0, 2)
+        self.assertEqual(path[0].Value, 0)
+        self.assertEqual(path[1].Value, 1)
+        self.assertEqual(path[2].Value, 2)
+        path = graph.BreadthFirstSearch(0, 3)
+        self.assertEqual(path[0].Value, 0)
+        self.assertEqual(path[1].Value, 1)
+        self.assertEqual(path[2].Value, 3)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,6 +3,7 @@ class Vertex:
     def __init__(self, val):
         self.Value = val
         self.Hit = False
+        self.bfs_predecessor = None
 
 
 class SimpleGraph:
@@ -60,4 +61,35 @@ class SimpleGraph:
             if found_non_hit:
                 continue
             stack.pop()
+        return []
+
+    def __shortest_path_to(self, vertex):
+        result = [vertex]
+        while vertex.bfs_predecessor is not None:
+            result.append(vertex.bfs_predecessor)
+            vertex = vertex.bfs_predecessor
+        return list(reversed(result))
+
+    def BreadthFirstSearch(self, VFrom, VTo):
+        queue = []
+        for v in self.vertex:
+            if v is not None:
+                v.Hit = False
+                v.bfs_predecessor = None
+        self.vertex[VFrom].Hit = True
+        queue.append(VFrom)
+        while len(queue) > 0:
+            current_index = queue.pop()
+            for index, is_adjacent in enumerate(self.m_adjacency[current_index]):
+                if not is_adjacent:
+                    continue
+                if index == VTo:
+                    end = self.vertex[VTo]
+                    end.bfs_predecessor = self.vertex[current_index]
+                    return self.__shortest_path_to(end)
+                if not self.vertex[index].Hit:
+                    non_hit = self.vertex[index]
+                    non_hit.Hit = True
+                    non_hit.bfs_predecessor = self.vertex[current_index]
+                    queue.insert(0, index)
         return []
