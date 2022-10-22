@@ -93,3 +93,24 @@ class SimpleGraph:
                     non_hit.bfs_predecessor = self.vertex[current_index]
                     queue.insert(0, index)
         return []
+
+    def WeakVertices(self):
+        result = []
+        for index, vertex in enumerate(self.vertex):
+            if vertex is None:
+                continue
+            weak = True
+            adjacent = []
+            for adjacent_index, is_adjacent in enumerate(self.m_adjacency[index]):
+                if not is_adjacent:
+                    continue
+                for second_adjacent_index in adjacent:
+                    if self.m_adjacency[adjacent_index][second_adjacent_index] == 1:
+                        weak = False
+                        break
+                if not weak:
+                    break
+                adjacent.append(adjacent_index)
+            if weak:
+                result.append(vertex)
+        return result

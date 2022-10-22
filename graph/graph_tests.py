@@ -114,6 +114,26 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(path[1].Value, 1)
         self.assertEqual(path[2].Value, 3)
 
+    def test_weak_vertices(self):
+        graph = SimpleGraph(10)
+        for i in range(9):
+            graph.AddVertex(i)
+        graph.AddEdge(0, 1)
+        graph.AddEdge(0, 2)
+        graph.AddEdge(0, 3)
+        graph.AddEdge(1, 3)
+        graph.AddEdge(1, 4)
+        graph.AddEdge(2, 3)
+        graph.AddEdge(3, 5)
+        graph.AddEdge(4, 5)
+        graph.AddEdge(5, 7)
+        graph.AddEdge(5, 8)
+        graph.AddEdge(6, 8)
+        graph.AddEdge(7, 8)
+        result = graph.WeakVertices()
+        self.assertEqual(result[0].Value, 4)
+        self.assertEqual(result[1].Value, 6)
+
 
 if __name__ == '__main__':
     unittest.main()
